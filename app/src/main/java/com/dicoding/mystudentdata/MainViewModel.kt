@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.dicoding.mystudentdata.database.Student
+import com.dicoding.mystudentdata.database.StudentAndUniversity
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val studentRepository: StudentRepository) : ViewModel() {
@@ -18,6 +19,9 @@ class MainViewModel(private val studentRepository: StudentRepository) : ViewMode
     private fun insertAllData() = viewModelScope.launch {
         studentRepository.insertAllData()
     }
+
+    fun getAllStudentAndUniversity(): LiveData<List<StudentAndUniversity>> = studentRepository.getAllStudentAndUniversity()
+
 }
 
 class ViewModelFactory(private val repository: StudentRepository) : ViewModelProvider.Factory {
